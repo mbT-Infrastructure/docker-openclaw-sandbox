@@ -1,0 +1,71 @@
+{
+    "agents": {
+        "defaults": {
+            "model": {
+                "primary": "env/${AI_MODEL}"
+            }
+        }
+    },
+    "channels": {
+        "signal": {
+            "autoStart": false,
+            "enabled": true,
+            "httpUrl": "${SIGNAL_SERVER_URL}",
+            "account": "${SIGNAL_ACCOUNT}",
+            "dmPolicy": "allowlist",
+            "allowFrom": ["${SIGNAL_ALLOW_FROM}"]
+        }
+    },
+    "gateway": {
+        "mode": "local",
+        "port": 18789,
+        "bind": "lan",
+        "auth": {
+            "mode": "token",
+            "token": "${PASSWORD}"
+        },
+        "controlUi": {
+            "allowInsecureAuth": true,
+            "allowedOrigins": [
+                "http://127.0.0.1:18789",
+                "http://127.0.0.1:8000",
+                "http://localhost:18789",
+                "http://localhost:8000"
+            ]
+        }
+    },
+    "models": {
+        "mode": "merge",
+        "providers": {
+            "env": {
+                "baseUrl": "${AI_API_URL}/v1",
+                "apiKey": "${AI_API_KEY}",
+                "api": "openai-responses",
+                "models": [
+                    {
+                        "id": "${AI_MODEL}",
+                        "name": "${AI_MODEL}",
+                        "contextWindow": 64000
+                    }
+                ]
+            }
+        }
+    },
+    "plugins": {
+        "entries": {
+            "signal": {
+                "enabled": true
+            }
+        }
+    },
+    "tools": {
+        "web": {
+            "search": {
+                "enabled": true
+            },
+            "fetch": {
+                "enabled": true
+            }
+        }
+    }
+}

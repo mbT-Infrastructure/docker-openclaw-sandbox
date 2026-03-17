@@ -1,0 +1,22 @@
+services:
+
+    openclaw-sandbox:
+        container_name: openclaw-sandbox
+        build: .
+        mem_limit: 8G
+        environment:
+            - AI_API_URL=${AI_API_URL:?}
+            - AI_API_KEY=${AI_API_KEY:?}
+            - AI_MODEL=default
+            - BRAVE_API_KEY=${BRAVE_API_KEY}
+            # - OPENCLAW_CONFIG_PATH=~/.openclaw/openclaw.json
+            - PASSWORD=admin
+            - SIGNAL_ACCOUNT=-
+            - SIGNAL_ALLOW_FROM=-
+        read_only: true
+        tmpfs:
+            - /tmp:exec
+        volumes:
+            - "./data-local:/media/openclaw"
+        ports:
+            - "127.0.0.1:8000:18789"
