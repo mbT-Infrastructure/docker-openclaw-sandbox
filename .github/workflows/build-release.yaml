@@ -103,7 +103,7 @@ jobs:
                 GH_TOKEN: ${{ github.token }}
               run: |
                   for CACHE in $(gh cache list \
-                          --key docker-openclaw-sandbox-build-cache
+                          --key docker-openclaw-sandbox-build-cache \
                           --ref ${{ github.ref}} \
                           | cut --fields 1); do
                       echo "Deleting cache \"$CACHE\"."

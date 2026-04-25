@@ -14,6 +14,7 @@ COPY files/openclaw.json  /opt/openclaw
 ENV AI_API_URL=""
 ENV AI_API_KEY=""
 ENV AI_MODEL=default
+ENV ALLOWED_ORIGIN="http://127.0.0.1:18789"
 ENV BRAVE_API_KEY=""
 ENV OPENCLAW_HOME="/media/openclaw"
 ENV OPENCLAW_CONFIG_PATH="/opt/openclaw/openclaw.json"

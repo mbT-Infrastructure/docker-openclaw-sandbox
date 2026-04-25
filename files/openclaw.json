@@ -3,7 +3,8 @@
         "defaults": {
             "model": {
                 "primary": "env/${AI_MODEL}"
-            }
+            },
+            "timeoutSeconds": 3600
         }
     },
     "channels": {
@@ -16,6 +17,9 @@
             "allowFrom": ["${SIGNAL_ALLOW_FROM}"]
         }
     },
+    "cron": {
+        "sessionRetention": "7d"
+    },
     "gateway": {
         "mode": "local",
         "port": 18789,
@@ -27,10 +31,7 @@
         "controlUi": {
             "allowInsecureAuth": true,
             "allowedOrigins": [
-                "http://127.0.0.1:18789",
-                "http://127.0.0.1:8000",
-                "http://localhost:18789",
-                "http://localhost:8000"
+                "${ALLOWED_ORIGIN}"
             ]
         }
     },

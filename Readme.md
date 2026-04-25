@@ -18,6 +18,8 @@ configuration. Alternatively a customized `openclaw.json` can be mounted in the 
     - Url of the AI API server used by the default config file.
 - `AI_API_KEY`
     - Key to use for authorization to the AI API server used by the default config file.
+- `ALLOWED_ORIGIN`
+    - Configure the allowed origin for the Control UI, default `http://127.0.0.1:18789`.
 - `AI_MODEL`
     - The AI model used by the default config file, default: `default`.
 - `BRAVE_API_KEY`
