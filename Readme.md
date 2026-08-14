@@ -20,6 +20,8 @@ Some configuration options are exposed as environment variables as listed below.
     - Maximum context length used by the agents (default: `512000`).
 - `AI_MODEL`
     - The AI model to use (default: `default`).
+- `AI_REQUEST_TIMEOUT`
+    - Request timeout for interference requests ins seconds (default: `1800`).
 - `BRAVE_API_KEY`
     - API key for Brave Search used by the default configuration.
 - `OPEN_TERMINAL_API_KEY`
