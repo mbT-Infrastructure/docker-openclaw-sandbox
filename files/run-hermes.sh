@@ -20,8 +20,7 @@ su user --whitelist-environment \
     && hermes config set providers.container-config.api_key '$AI_API_KEY' \
     && hermes config set providers.container-config.default_model '$AI_MODEL' \
     && hermes config set providers.container-config.request_timeout_seconds '$AI_REQUEST_TIMEOUT' \
-    && hermes config set providers.container-config.stale_timeout_seconds '$AI_REQUEST_TIMEOUT' \
-    && hermes config set web.search_backend brave-free"
+    && hermes config set providers.container-config.stale_timeout_seconds '$AI_REQUEST_TIMEOUT'"
 
 cat > /media/user/.hermes/.env <<EOF
 BRAVE_SEARCH_API_KEY=$BRAVE_API_KEY
