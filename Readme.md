@@ -1,6 +1,7 @@
 # AI-Agents image
 
-This image contains [Hermes] and [Open Terminal] installed on top of the [development image].
+This image contains [Hermes] and [Open Terminal] installed on top of the [development-desktop
+image].
 
 Some configuration options are exposed as environment variables as listed below.
 
@@ -50,7 +51,7 @@ To build and run the docker container for development execute:
 docker compose --file docker-compose-dev.yaml up --build
 ```
 
-[development image]: https://github.com/mbT-Infrastructure/docker-development
+[development-desktop image]: https://github.com/mbT-Infrastructure/docker-development-desktop
 [Docker Hub]: https://hub.docker.com/r/madebytimo/ai-agents
 [Releases]: https://github.com/mbT-Infrastructure/docker-ai-agents/releases
 [Hermes]: https://hermes-agent.nousresearch.com/
