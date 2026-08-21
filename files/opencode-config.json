@@ -1,0 +1,23 @@
+{
+    "$schema": "https://opencode.ai/config.json",
+    "model": "container-config/{env:AI_MODEL}",
+    "provider": {
+        "container-config": {
+            "npm": "@ai-sdk/openai-compatible",
+            "name": "container-config",
+            "options": {
+                "baseURL": "{env:AI_API_URL}",
+                "apiKey": "{env:AI_API_KEY}"
+            },
+            "models": {
+                "{env:AI_MODEL}": {
+                    "name": "{env:AI_MODEL}",
+                    "limit": {
+                        "context": {env:AI_CONTEXT_LENGTH},
+                        "output": 32000
+                    }
+                }
+            }
+        }
+    }
+}

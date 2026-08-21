@@ -5,10 +5,17 @@ ENV USER_GROUPS="user"
 ADD --chmod=+x https://hermes-agent.nousresearch.com/install.sh /usr/local/bin/hermes-install.sh
 RUN apt update -qq && apt install -y -qq ripgrep \
     && rm -rf /var/lib/apt/lists/* \
+    && npm install --global opencode-ai \
     && pip3-latest install browser-use open-terminal \
-    && hermes-install.sh --skip-setup
+    && hermes-install.sh --skip-setup \
+    && hermes desktop --build-only \
+    && cd /usr/local/lib/hermes-agent \
+    && npm install --workspace web \
+    && npm run build --workspace web
 
-COPY files/healthcheck-open-terminal.sh files/run-hermes.sh files/run-open-terminal.sh \
+COPY files/opencode-config.json /usr/local/share/opencode-config.json
+COPY files/entrypoint-ai-agents.sh files/healthcheck-open-terminal.sh \
+    files/run-hermes.sh files/run-open-terminal.sh files/run-opencode.sh \
     /usr/local/bin/
 
 ENV AI_API_URL=""
@@ -18,6 +25,7 @@ ENV AI_MODEL=default
 ENV AI_REQUEST_TIMEOUT=1800
 ENV BASE_PATH="/"
 ENV BRAVE_API_KEY=""
+ENV OPENCODE_CONFIG=/usr/local/share/opencode-config.json
 ENV OPEN_TERMINAL_API_KEY=""
 ENV SIGNAL_ACCOUNT=""
 ENV SIGNAL_ALLOWED_USERS=""
@@ -25,7 +33,9 @@ ENV SIGNAL_GROUP_ALLOWED_USERS=""
 ENV SIGNAL_HOME_CHANNEL=""
 ENV SIGNAL_SERVER_URL="http://signal-cli:8080"
 
-CMD ["run-parallel.sh", "run-hermes.sh", "run-open-terminal.sh", "start-desktop.sh"]
+ENTRYPOINT [ "entrypoint-ai-agents.sh" ]
+CMD ["run-parallel.sh", "run-hermes.sh", "run-open-terminal.sh", "run-opencode.sh", "run-docker.sh", "run-sshd.sh", \
+    "run-desktop.sh" ]
 
 HEALTHCHECK CMD [ "bash", "-c", "healthcheck-open-terminal.sh && healthcheck-sshd.sh" ]
 

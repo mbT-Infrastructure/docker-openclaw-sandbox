@@ -13,7 +13,9 @@ export SIGNAL_HOME_CHANNEL SIGNAL_HTTP_URL
 su user --whitelist-environment \
     SIGNAL_ACCOUNT,SIGNAL_ALLOWED_USERS,SIGNAL_GROUP_ALLOWED_USERS,SIGNAL_HOME_CHANNEL,SIGNAL_HTTP_URL \
     --command \
-    "hermes config set model.default '$AI_MODEL' \
+    "hermes config set dashboard.basic_auth.password '$USER_PASSWORD' \
+    && hermes config set dashboard.basic_auth.username user \
+    && hermes config set model.default '$AI_MODEL' \
     && hermes config set model.provider container-config \
     && hermes config set model.context_length '$AI_CONTEXT_LENGTH' \
     && hermes config set providers.container-config.base_url '$AI_API_URL' \
@@ -31,4 +33,10 @@ EOF
 chown user:user /media/user/.hermes/.env
 chmod 600 /media/user/.hermes/.env
 
-exec su user --command "hermes gateway run"
+PIDS=()
+su user --command "hermes gateway run" &
+PIDS+=("$!")
+su user --command "hermes dashboard --host 0.0.0.0 --port 11002 --skip-build" &
+PIDS+=("$!")
+
+wait -n "${PIDS[@]}"

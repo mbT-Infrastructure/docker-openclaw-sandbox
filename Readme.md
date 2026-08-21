@@ -1,7 +1,7 @@
 # AI-Agents image
 
-This image contains [Hermes] and [Open Terminal] installed on top of the [development-desktop
-image].
+This image contains [Hermes], [OpenCode] and [Open Terminal] installed on top of the
+[development-desktop image].
 
 Some configuration options are exposed as environment variables as listed below.
 
@@ -10,6 +10,8 @@ Some configuration options are exposed as environment variables as listed below.
 1. Pull from [Docker Hub], download the package from [Releases] or build using `builder/build.sh`
 
 ## Usage
+
+The web interfaces of [Hermes] and [OpenCode] run on port `11002` and `11003`.
 
 ### Environment variables
 
@@ -37,6 +39,8 @@ Some configuration options are exposed as environment variables as listed below.
     - Home channel for Signal, defaults to the first account of `SIGNAL_ALLOWED_USERS`.
 - `SIGNAL_SERVER_URL`
     - URL of the Signal server (default: `http://signal-cli:8080`).
+- `USER_PASSWORD`
+    - Password used to authenticate the user on hermes dashboard and VNC.
 
 ### Volumes
 
@@ -53,6 +57,7 @@ docker compose --file docker-compose-dev.yaml up --build
 
 [development-desktop image]: https://github.com/mbT-Infrastructure/docker-development-desktop
 [Docker Hub]: https://hub.docker.com/r/madebytimo/ai-agents
-[Releases]: https://github.com/mbT-Infrastructure/docker-ai-agents/releases
 [Hermes]: https://hermes-agent.nousresearch.com/
 [Open Terminal]: https://openterminal.sh/
+[OpenCode]: https://opencode.ai/
+[Releases]: https://github.com/mbT-Infrastructure/docker-ai-agents/releases
