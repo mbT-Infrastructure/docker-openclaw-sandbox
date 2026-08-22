@@ -10,8 +10,8 @@ RUN apt update -qq && apt install -y -qq ripgrep \
     && hermes-install.sh --skip-setup \
     && hermes desktop --build-only \
     && cd /usr/local/lib/hermes-agent \
-    && npm install --workspace web \
-    && npm run build --workspace web
+    && npm install --workspace web --workspace ui-tui \
+    && npm run build --workspace web --workspace ui-tui
 
 COPY files/opencode-config.json /usr/local/share/opencode-config.json
 COPY files/entrypoint-ai-agents.sh files/healthcheck-open-terminal.sh \
@@ -22,9 +22,11 @@ ENV AI_API_URL=""
 ENV AI_API_KEY=""
 ENV AI_CONTEXT_LENGTH=512000
 ENV AI_MODEL=default
+ENV AI_VISION_MODEL=""
 ENV AI_REQUEST_TIMEOUT=1800
 ENV BASE_PATH="/"
 ENV BRAVE_API_KEY=""
+ENV HERMES_TUI_DIR=/usr/local/lib/hermes-agent/ui-tui
 ENV OPENCODE_CONFIG=/usr/local/share/opencode-config.json
 ENV OPEN_TERMINAL_API_KEY=""
 ENV SIGNAL_ACCOUNT=""

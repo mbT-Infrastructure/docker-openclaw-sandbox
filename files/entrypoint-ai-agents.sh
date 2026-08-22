@@ -1,18 +1,23 @@
 #!/usr/bin/env bash
 set -e -o pipefail
 
-cat <<EOF > /etc/profile.d/env-ai-agents.sh
+if [[ "$EUID" -eq 0 ]]; then
+    cat <<EOF > /etc/profile.d/env-ai-agents.sh
 #!/usr/bin/env bash
 
 AI_API_URL="${AI_API_URL}"
 AI_API_KEY="${AI_API_KEY}"
 AI_CONTEXT_LENGTH="${AI_CONTEXT_LENGTH}"
 AI_MODEL="${AI_MODEL}"
+AI_VISION_MODEL="${AI_VISION_MODEL}"
 AI_REQUEST_TIMEOUT="${AI_REQUEST_TIMEOUT}"
+HERMES_TUI_DIR="${HERMES_TUI_DIR}"
 OPENCODE_CONFIG="${OPENCODE_CONFIG}"
 
-export AI_API_URL AI_API_KEY AI_CONTEXT_LENGTH AI_MODEL AI_REQUEST_TIMEOUT OPENCODE_CONFIG
+export AI_API_URL AI_API_KEY AI_CONTEXT_LENGTH AI_MODEL AI_VISION_MODEL AI_REQUEST_TIMEOUT \
+    HERMES_TUI_DIR OPENCODE_CONFIG
 EOF
+fi
 
 
 exec entrypoint-desktop.sh "$@"
