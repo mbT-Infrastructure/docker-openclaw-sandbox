@@ -11,7 +11,10 @@ RUN apt update -qq && apt install -y -qq ripgrep \
     && hermes desktop --build-only \
     && cd /usr/local/lib/hermes-agent \
     && npm install --workspace web --workspace ui-tui \
-    && npm run build --workspace web --workspace ui-tui
+    && npm run build --workspace web --workspace ui-tui \
+    && mkdir --parents /usr/local/share/bash-completion/completions/ \
+    && hermes completion bash > /usr/local/share/bash-completion/completions/hermes \
+    && opencode completion > /usr/local/share/bash-completion/completions/opencode
 
 COPY files/opencode-config.json /usr/local/share/opencode-config.json
 COPY files/entrypoint-ai-agents.sh files/healthcheck-open-terminal.sh \
