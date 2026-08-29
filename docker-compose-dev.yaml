@@ -10,6 +10,8 @@ services:
             - AI_API_KEY=${AI_API_KEY:?}
             - AI_CONTEXT_LENGTH=64000
             - AI_MODEL=${AI_MODEL:-default}
+            - AI_CHEAP_MODEL=${AI_MODEL:-cheap}
+            - AI_VISION_MODEL=${AI_VISION_MODEL:-vision}
             - AUTHORIZED_PUBLIC_KEYS=${SSH_PUBLIC_KEY}
             - BRAVE_API_KEY=${BRAVE_API_KEY}
             - SIGNAL_ACCOUNT=

@@ -1,6 +1,7 @@
 {
     "$schema": "https://opencode.ai/config.json",
     "model": "container-config/{env:AI_MODEL}",
+    "small_model": "container-config/{env:AI_CHEAP_MODEL}",
     "provider": {
         "container-config": {
             "npm": "@ai-sdk/openai-compatible",
@@ -12,6 +13,20 @@
             "models": {
                 "{env:AI_MODEL}": {
                     "name": "{env:AI_MODEL}",
+                    "limit": {
+                        "context": {env:AI_CONTEXT_LENGTH},
+                        "output": 32000
+                    }
+                },
+                "{env:AI_CHEAP_MODEL}": {
+                    "name": "{env:AI_CHEAP_MODEL}",
+                    "limit": {
+                        "context": {env:AI_CONTEXT_LENGTH},
+                        "output": 32000
+                    }
+                },
+                "{env:AI_VISION_MODEL}": {
+                    "name": "{env:AI_VISION_MODEL}",
                     "limit": {
                         "context": {env:AI_CONTEXT_LENGTH},
                         "output": 32000

@@ -18,6 +18,9 @@ su user --whitelist-environment \
     && hermes config set model.default '$AI_MODEL' \
     && hermes config set model.provider container-config \
     && hermes config set model.context_length '$AI_CONTEXT_LENGTH' \
+    && hermes config set auxiliary.title_generation.model '$AI_CHEAP_MODEL' \
+    && hermes config set auxiliary.title_generation.provider container-config \
+    && hermes config set auxiliary.title_generation.timeout '$AI_REQUEST_TIMEOUT' \
     && hermes config set auxiliary.vision.model '$AI_VISION_MODEL' \
     && hermes config set auxiliary.vision.provider container-config \
     && hermes config set auxiliary.vision.timeout '$AI_REQUEST_TIMEOUT' \

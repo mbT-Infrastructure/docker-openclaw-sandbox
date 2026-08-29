@@ -23,6 +23,8 @@ The web interfaces of [Hermes] and [OpenCode] run on port `11002` and `11003`.
     - Maximum context length used by the agents (default: `512000`).
 - `AI_MODEL`
     - The AI model to use (default: `default`).
+- `AI_CHEAP_MODEL`
+    - The AI model to use for simple tasks.
 - `AI_VISION_MODEL`
     - The vision AI model to use.
 - `AI_REQUEST_TIMEOUT`
