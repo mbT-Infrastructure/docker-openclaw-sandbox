@@ -1,4 +1,4 @@
-FROM madebytimo/development-desktop
+FROM docker.io/madebytimo/development-desktop
 
 ENV USER_GROUPS="user"
 
@@ -17,6 +17,7 @@ RUN apt update -qq && apt install -y -qq ripgrep \
     && opencode completion > /usr/local/share/bash-completion/completions/opencode
 
 COPY files/opencode-config.json /usr/local/share/opencode-config.json
+COPY files/hermes.desktop /usr/local/share/applications/
 COPY files/entrypoint-ai-agents.sh files/healthcheck-open-terminal.sh \
     files/run-hermes.sh files/run-open-terminal.sh files/run-opencode.sh \
     /usr/local/bin/
