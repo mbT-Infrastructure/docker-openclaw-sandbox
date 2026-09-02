@@ -15,6 +15,7 @@ su user --whitelist-environment \
     --command \
     "hermes config set dashboard.basic_auth.password '$USER_PASSWORD' \
     && hermes config set dashboard.basic_auth.username user \
+    && hermes config set desktop.electron_flags '--no-sandbox --disable-dev-shm-usage' \
     && hermes config set model.default '$AI_MODEL' \
     && hermes config set model.provider container-config \
     && hermes config set model.context_length '$AI_CONTEXT_LENGTH' \
